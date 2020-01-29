@@ -17,11 +17,11 @@ public class ApplicationUserController {
     @Autowired private PasswordEncoder passwordEncoder;
 
     @PostMapping("/signup")
-    public RedirectView createNewApplicationUser(String username, String password){
+    public RedirectView createNewApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio){
         System.out.println("You are adding a user");
         // make the user AND salt and hash the password
         // this does the salting and hashing for you
-        ApplicationUser newUser = new ApplicationUser(username, passwordEncoder.encode(password));
+        ApplicationUser newUser = new ApplicationUser(username, passwordEncoder.encode(password), firstName, lastName, dateOfBirth, bio);
 
         // save the user to db
         applicationUserRepository.save(newUser);

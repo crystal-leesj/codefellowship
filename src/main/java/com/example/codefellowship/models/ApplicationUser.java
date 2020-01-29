@@ -17,12 +17,20 @@ public class ApplicationUser implements UserDetails {
 
     String username;
     String password;
+    String firstName;
+    String lastName;
+    String dateOfBirth;
+    String bio;
 
     public ApplicationUser() {};
 
-    public ApplicationUser(String username, String password){
+    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio){
         this.username = username;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.bio = bio;
     }
 
     @Override
@@ -38,6 +46,26 @@ public class ApplicationUser implements UserDetails {
     @Override
     public String getUsername() {
         return this.username;
+    }
+
+    @Override
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    @Override
+    public String getLastNameName() {
+        return this.lastName;
+    }
+
+    @Override
+    public String getDateOfBirth() {
+        return this.dateOfBirth;
+    }
+
+    @Override
+    public String getBio() {
+        return this.bio;
     }
 
     @Override
