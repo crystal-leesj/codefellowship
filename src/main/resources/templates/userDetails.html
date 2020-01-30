@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+</head>
+<body>
+    <h1>This is [[${usernameWeAreVisiting}]]'s detail page, you are visiting them [[${userNameWhoIsNotOwner}]]</h1>
+    <h2>[[${usernameWeAreVisiting}]] Detailed information:</h2>
+    <ul>
+        <li><img src="/images/superpower.png" alt="profile"></li>
+        <li>First Name: <span th:text="${user_firstName}"></span></li>
+        <li>Last Name: <span th:text="${user_lastName}"></span></li>
+        <li>Date of Birth: <span th:text="${user_dateOfBirth}"></span></li>
+        <li>Bio: <span th:text="${user_bio}"></span></li>
+    </ul>
+    <form action="/writePost" method="post">
+
+        <input type="hidden" th:value="${userIdWeAreVisiting}" name="id">
+        Body <input type="text" name="body">
+        <input type="submit">
+    </form>
+</body>
+</html>
