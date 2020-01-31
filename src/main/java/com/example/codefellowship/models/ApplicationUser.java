@@ -43,7 +43,7 @@ public class ApplicationUser implements UserDetails {
         return this.firstName;
     }
 
-    public String getLastNameName() {
+    public String getLastName() {
         return this.lastName;
     }
 

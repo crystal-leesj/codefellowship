@@ -28,7 +28,6 @@ public class ApplicationUserController {
 
     @PostMapping("/signup")
     public RedirectView createNewApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio){
-        System.out.println("You are adding a user");
         // make the user AND salt and hash the password
         // this does the salting and hashing for you
         ApplicationUser newUser = new ApplicationUser(username, passwordEncoder.encode(password), firstName, lastName, dateOfBirth, bio);
@@ -45,6 +44,22 @@ public class ApplicationUserController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public RedirectView loginAUser(){
+
+        return new RedirectView("/myprofile");
+    }
+
+    @GetMapping("/myprofile")
+    public String getMyprofile(Principal p, Model m){
+        ApplicationUser theUser = applicationUserRepository.findByUsername(p.getName());
+        m.addAttribute("user", theUser);
+
+//        ApplicationUser userPost = applicationUserRepository.findByUsername(p.getName());
+//        m.addAttribute("userPost", userPost);
+        return "myprofile";
+    }
+
     @GetMapping("/users/{id}")
     public String showUserDetails(@PathVariable long id, Principal p, Model m){
         ApplicationUser theUser = applicationUserRepository.findById(id).get();
@@ -55,7 +70,7 @@ public class ApplicationUserController {
         m.addAttribute("principle", p.getName());
 
         m.addAttribute("user_firstName", theUser.getFirstName());
-        m.addAttribute("user_lastName", theUser.getLastNameName());
+        m.addAttribute("user_lastName", theUser.getLastName());
         m.addAttribute("user_dateOfBirth", theUser.getDateOfBirth());
         m.addAttribute("user_bio", theUser.getBio());
 

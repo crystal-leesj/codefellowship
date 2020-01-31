@@ -19,6 +19,7 @@
     </div>
     <div id="login">
         <form action="/login" method="POST">
+            <input type="hidden" th:value="${userIdWeAreVisiting}" name="id">
             <label><b>Username</b></label>
             <input type="text" name="username" placeholder="Enter username" required >
             <label><b>Password</b></label>

@@ -6,6 +6,8 @@ import com.example.codefellowship.models.Post;
 import com.example.codefellowship.models.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -21,11 +23,10 @@ public class PostController {
 
     @PostMapping("/writePost")
     public RedirectView createAPost(Principal p, String body, long id){
-        System.out.println("----------------writePOST");
         ApplicationUser writer = applicationUserRepository.findByUsername(p.getName());
         // save a post
         Post newPost = new Post(writer, body);
         postRepository.save(newPost);
         return new RedirectView("/users/" + id);
-    };
+    }
 }
