@@ -74,7 +74,7 @@ input[type=submit] {
   border-radius: 15px;
 }
 
-#profile {
+.profile {
     border: 5px solid #ff6666;
     border-radius: 25px;
     margin: auto;
@@ -83,7 +83,7 @@ input[type=submit] {
     color: #ffe6e6;
 }
 
-#profile ul {
+.profile ul {
     list-style: none;
     width: 100%;
     margin: 5px 0 8px 0;
