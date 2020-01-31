@@ -17,6 +17,10 @@ public class ApplicationUser implements UserDetails {
     @OneToMany(mappedBy = "applicationUser")
     List<Post> posts;
 
+    public List<Post> getPosts(){
+        return this.posts;
+    }
+
     String username;
     String password;
     String firstName;

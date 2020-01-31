@@ -1,26 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>HOME</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Made it past security, welcome [[${username}]]</h1>
-
-<h2> make new users here</h2>
-<form action="/signup" method="POST">
-    name <input type="username" name="username">
-    <br />
-    password <input type="password" name="password">
-    <br />
-    First Name <input type="text" name="firstName">
-    <br />
-    Last Name <input type="text" name="lastName">
-    <br />
-    Date of Birth <input type="text" name="dateOfBirth">
-    <br />
-    Bio <input type="text" name="bio">
-    <input type="submit">
-</form>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+<!--            <li><a href="/logout">Logout</a></li>-->
+        </ul>
+    </nav>
+    <div class="pageTitle">
+        <h1>Made it past security, welcome [[${username}]]</h1>
+    </div>
+    <div id="signup">
+        <h2>Sign up to Codefellowship</h2>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
+        <form action="/signup" method="post">
+            <label><b>Name</b></label>
+            <input type="text" name="username" placeholder="Enter username" required>
+            <label><b>Password</b></label>
+            <input type="password" name="password" placeholder="Enter password" required>
+            <label><b>First Name</b></label>
+            <input type="text" name="firstName" placeholder="Enter first name">
+            <label><b>Last Name</b></label>
+            <input type="text" name="lastName" placeholder="Enter last name">
+            <label><b>Date of Birth</b></label>
+            <input type="text" name="dateOfBirth" placeholder="Enter date of birth">
+            <label><b>Biography</b></label>
+            <input type="text" name="bio" placeholder="Enter biography">
+            <input type="submit" value="Sign up">
+        </form>
+    </div>
 </body>
 </html>
