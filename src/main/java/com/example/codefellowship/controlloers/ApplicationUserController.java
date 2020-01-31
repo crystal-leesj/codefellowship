@@ -2,6 +2,8 @@ package com.example.codefellowship.controlloers;
 
 import com.example.codefellowship.models.ApplicationUser;
 import com.example.codefellowship.models.ApplicationUserRepository;
+import com.example.codefellowship.models.Post;
+import com.example.codefellowship.models.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,11 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class ApplicationUserController {
     @Autowired
     ApplicationUserRepository applicationUserRepository;
+
+    @Autowired
+    PostRepository postRepository;
 
     @Autowired private PasswordEncoder passwordEncoder;
 
@@ -46,12 +52,17 @@ public class ApplicationUserController {
         m.addAttribute("usernameWeAreVisiting", theUser.getUsername());
         m.addAttribute("userIdWeAreVisiting", theUser.id);
         m.addAttribute("userWeAreVisiting", theUser);
-        m.addAttribute("userNameWhoIsNotOwner", p.getName());
+        m.addAttribute("principle", p.getName());
+
         m.addAttribute("user_firstName", theUser.getFirstName());
         m.addAttribute("user_lastName", theUser.getLastNameName());
         m.addAttribute("user_dateOfBirth", theUser.getDateOfBirth());
         m.addAttribute("user_bio", theUser.getBio());
+
+//        List<Post> posts = theUser.getPosts();
+//        m.addAttribute("posts", posts);
         return "userDetails";
     }
+
 
 }
