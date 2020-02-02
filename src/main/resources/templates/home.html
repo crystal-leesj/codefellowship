@@ -17,12 +17,22 @@
     <div class="pageTitle">
         <h1>Made it past security, welcome [[${username}]]</h1>
     </div>
+    <div class="subscription">
+        <h2>List of Users</h2>
+        <p>Click their profile and view their posts.</p>
+        <hr>
+        <ul>
+            <li th:each="user : ${users}">
+                <p><a th:href="'/users/' + ${user.id}">[[${user.username}]]</a></p>
+            </li>
+        </ul>
+    </div>
     <div id="signup">
         <h2>Sign up to Codefellowship</h2>
         <p>Please fill in this form to create an account.</p>
         <hr>
         <form action="/signup" method="post">
-            <label><b>Name</b></label>
+            <label><b>Username</b></label>
             <input type="text" name="username" placeholder="Enter username" required>
             <label><b>Password</b></label>
             <input type="password" name="password" placeholder="Enter password" required>
@@ -34,7 +44,7 @@
             <input type="text" name="dateOfBirth" placeholder="Enter date of birth">
             <label><b>Biography</b></label>
             <input type="text" name="bio" placeholder="Enter biography">
-            <input type="submit" value="Sign up">
+            <input type="submit" value="Join Codefellowship">
         </form>
     </div>
 </body>

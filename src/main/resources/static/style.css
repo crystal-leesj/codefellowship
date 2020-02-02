@@ -105,6 +105,12 @@ input[type=submit] {
     margin: 5px 0 8px 0;
 }
 
+#postListInUserDetail ul {
+    list-style-type: circle;
+    width: 100%;
+    margin: 5px 0 8px 0;
+}
+
 #login {
     border: 5px solid #ff6666;
     border-radius: 25px;
@@ -112,4 +118,30 @@ input[type=submit] {
     width: 50%;
     padding: 40px;
     color: #ffe6e6;
+}
+
+#myFeed {
+    border: 5px solid #ff6666;
+    border-radius: 25px;
+    margin: auto;
+    width: 50%;
+    padding: 40px;
+    color: #ffe6e6;
+}
+
+.subscription {
+    border: 5px solid #ff6666;
+    border-radius: 25px;
+    margin: auto;
+    width: 50%;
+    padding: 40px;
+    color: #ffe6e6;
+}
+
+.subscription ul {
+  list-style-type: none;
+}
+
+.subscription ul a {
+    text-decoration: none;
 }

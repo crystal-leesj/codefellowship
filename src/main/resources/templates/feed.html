@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Feed</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/feed">Feed</a></li>
+            <li><a href="/login">Login</a></li>
+            <!--            <li><a href="/logout">Logout</a></li>-->
+        </ul>
+    </nav>
+    <div class="pageTitle">
+        <h1>[[${user.username}]]'s Feed</h1>
+        <h2>You are logged in as [[${principle}]]</h2>
+    </div>
+    <div>
+        <div class="subscription">
+            <h2>People you follow:</h2>
+            <ul>
+                <li th:each="user : ${usersIFollow}">
+                    <a th:href="'/users/' + ${user.id}">[[${user.username}]]</a>
+                </li>
+            </ul>
+        </div>
+        <div id="myFeed">
+            <h2>Their posts:</h2>
+            <br>
+            <ul th:each="user : ${usersIFollow}">
+                <section th:each="post : ${user.posts}">
+                    <li>
+                        <p><a th:href="'/users/' + ${user.id}"><span th:text="${user.firstName}"></span></a> posted</p>
+                        <img src="/images/superpower.png" alt="profile" height="100" width="100">
+                        <p>[[${post.body}]]</p>
+                        <p>Date: [[${post.createdAt}]]</p>
+                        <hr>
+                    </li>
+                </section>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

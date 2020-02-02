@@ -62,3 +62,28 @@ When the build is success, go to `http://localhost:8080/`
 `http://localhost:8080/login` - you can login into an account
 `http://localhost:8080/myprofile` - as soon as you log in, you will redirect to your page
 `http://localhost:8080/users/{id}` - you can view the user detail and post a post
+
+***
+
+## Lab: 18 - Spring Security against User Input
+
+### Feature Tasks
+- Ensure that users can’t perform SQL injection or HTML injection with their posts.
+- Allow users to follow other users. Following a user means that their posts show up in the logged-in user’s feed, where they can see what all of their followed users have posted recently.
+    - Ensure there is some way (like a users index page) that a user can discover other users on the service.
+    - On a user profile page that does NOT belong to the currently logged-in user, display a “Follow” button. When a user clicks that follow button, the logged-in user is now following the viewed-profile-page user.
+        - note: this will require a self-join on ApplicationUsers.
+    - A user can visit a url (like /`feed`) to view all of the posts from the users that they follow.
+    - Each post should have a link to the user profile of the user who wrote the post.
+
+### To Run
+Nevigate to the directory of codefellowship.
+In terminal, type `./gradlew bootRun`
+When the build is success, go to `http://localhost:8080/`
+
+### state of each of the feature tasks
+`http://localhost:8080/` - you can sign up an account
+`http://localhost:8080/login` - you can login into an account
+`http://localhost:8080/myprofile` - as soon as you log in, you will redirect to your page. you can post a post.
+`http://localhost:8080/users/{id}` - you can view other users information and you can follow the that user
+`http://localhost:8080/feed` - you can view all the posts from your influencers
