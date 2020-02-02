@@ -84,5 +84,6 @@ When the build is success, go to `http://localhost:8080/`
 ### state of each of the feature tasks
 `http://localhost:8080/` - you can sign up an account
 `http://localhost:8080/login` - you can login into an account
-`http://localhost:8080/myprofile` - as soon as you log in, you will redirect to your page
-`http://localhost:8080/users/{id}` - you can view the user detail and post a post
+`http://localhost:8080/myprofile` - as soon as you log in, you will redirect to your page. you can post a post.
+`http://localhost:8080/users/{id}` - you can view other users information and you can follow the that user
+`http://localhost:8080/feed` - you can view all the posts from your influencers

@@ -44,40 +44,47 @@ public class ApplicationUserController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public RedirectView loginAUser(){
-
-        return new RedirectView("/myprofile");
-    }
 
     @GetMapping("/myprofile")
     public String getMyprofile(Principal p, Model m){
         ApplicationUser theUser = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("user", theUser);
-
-//        ApplicationUser userPost = applicationUserRepository.findByUsername(p.getName());
-//        m.addAttribute("userPost", userPost);
+        m.addAttribute("principle", p.getName());
         return "myprofile";
     }
 
     @GetMapping("/users/{id}")
     public String showUserDetails(@PathVariable long id, Principal p, Model m){
-        ApplicationUser theUser = applicationUserRepository.findById(id).get();
-        // set the attribute on Model
-        m.addAttribute("usernameWeAreVisiting", theUser.getUsername());
-        m.addAttribute("userIdWeAreVisiting", theUser.id);
-        m.addAttribute("userWeAreVisiting", theUser);
-        m.addAttribute("principle", p.getName());
+        if (p == null) {
+            return "login";
+        } else {
+            ApplicationUser theUser = applicationUserRepository.findById(id).get();
+            // set the attribute on Model
+            m.addAttribute("usernameWeAreVisiting", theUser.getUsername());
+            m.addAttribute("userIdWeAreVisiting", theUser.id);
+            m.addAttribute("userWeAreVisiting", theUser);
+            m.addAttribute("principle", p.getName());
 
-        m.addAttribute("user_firstName", theUser.getFirstName());
-        m.addAttribute("user_lastName", theUser.getLastName());
-        m.addAttribute("user_dateOfBirth", theUser.getDateOfBirth());
-        m.addAttribute("user_bio", theUser.getBio());
+            m.addAttribute("user_firstName", theUser.getFirstName());
+            m.addAttribute("user_lastName", theUser.getLastName());
+            m.addAttribute("user_dateOfBirth", theUser.getDateOfBirth());
+            m.addAttribute("user_bio", theUser.getBio());
 
-//        List<Post> posts = theUser.getPosts();
-//        m.addAttribute("posts", posts);
-        return "userDetails";
+            return "userDetails";
+        }
     }
 
-
+    @PostMapping("/follow")
+    public RedirectView follow(long id, Principal p) {
+        ApplicationUser userToFollow = applicationUserRepository.findById(id).get();
+        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+        if (loggedInUser == userToFollow) {
+            System.out.println("You cannot follow yourself!");
+        } else {
+            loggedInUser.follow(userToFollow);
+            applicationUserRepository.save(loggedInUser);
+            System.out.println("-----------SAVE!");
+        }
+        return new RedirectView("/users/" + id);
+    }
 }
