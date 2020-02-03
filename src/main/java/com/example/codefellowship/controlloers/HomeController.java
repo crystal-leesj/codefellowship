@@ -18,21 +18,23 @@ public class HomeController {
     @GetMapping("/")
     public String getHome(Principal p, Model m){
 
-        if(p != null){
+        if(p == null){
+            m.addAttribute("username", "New user!");
+        } else {
             m.addAttribute("username", p.getName());
-        }
 
-        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
-        long loggedInUserId = loggedInUser.id;
+            ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+            long loggedInUserId = loggedInUser.id;
 
-        List<ApplicationUser> users = applicationUserRepository.findAll();
-        // Remove logged in users name from the users list
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).id == loggedInUserId) {
-                users.remove(i);
+            List<ApplicationUser> users = applicationUserRepository.findAll();
+            // Remove logged in users name from the users list
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).id == loggedInUserId) {
+                    users.remove(i);
+                }
             }
+            m.addAttribute("users", users);
         }
-        m.addAttribute("users", users);
 
         return "home";
     }
